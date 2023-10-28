@@ -1,0 +1,111 @@
+//*Main colors
+$hoversButtons: rgb(0, 119, 182);
+$hoversLinks: rgb(0, 153, 204);
+
+//* light colors
+
+$backgroundLight:rgb(255,255,250);
+$colorLight:rgb(0,0,0);
+$headersColors: rgb(51, 51, 51);
+$shadowBox: rgb(192, 192, 192);
+
+//* night mode
+$backgroundNight:rgb(26, 26, 26);
+$colorNight:rgb(255, 255, 255);
+$headersColorsNight: rgb(204, 204, 204);
+$shadowBoxNight:rgb(28, 28, 28);
+
+
+//! font
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400&display=swap');
+
+
+//! mixing
+
+@mixin boxShadow {
+    box-shadow: 4px 3px 2px $shadowBox;
+    body.night-mode  {
+        box-shadow: 4px 3px 2px $backgroundNight;
+    }
+}
+
+@mixin hoverButton {
+    &:hover {
+        background-color: $hoversButtons;
+    }
+}
+
+@mixin hoverLink {
+    &:hover {
+        color: $hoversLinks;
+    }
+}
+
+@mixin headerColor {
+    background-color: $headersColors;
+
+    body.night-mode  {
+        background-color: $headersColorsNight;
+    }
+}
+
+@mixin gridCenter {
+    display: grid;
+    place-items: center;
+}
+
+@mixin reset {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin totalSize {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin borderRadiusImg {
+    border-radius: 10px;
+}
+
+@mixin borderRadiusButtons {
+    border-radius: 20px;
+}
+
+@mixin transitionHover {
+    transition: ease-in-out .4s;
+}
+
+// ? Font settings
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+p, span, div,button,a {
+    font-family: 'Roboto', sans-serif;
+}
+
+//! body options
+
+//? body light
+body {
+    background-color: $backgroundLight;
+    color: $colorLight;
+}
+//? body night|
+body.night-mode  {
+    background-color: $backgroundNight;
+    color: $colorNight;
+}
+
+* {
+    @include reset;
+    box-sizing: border-box;
+}

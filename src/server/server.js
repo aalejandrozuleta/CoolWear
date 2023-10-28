@@ -9,7 +9,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'Sena1234%',
-  database: 'proyectoX'
+  database: 'CoolWear'
 });
 
 app.use(express.urlencoded({

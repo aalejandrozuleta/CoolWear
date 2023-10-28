@@ -5,11 +5,11 @@ DROP TABLE IF EXISTS CATEGORY;
 DROP TABLE IF EXISTS USER;
 
 -- Next, drop the database if it exists
-DROP DATABASE IF EXISTS proyectoX;
+DROP DATABASE IF EXISTS CoolWear;
 
 -- Now, create the database
-CREATE DATABASE proyectoX;
-USE proyectoX;
+CREATE DATABASE CoolWear;
+USE CoolWear;
 
 -- Create the USER table
 CREATE TABLE USER (

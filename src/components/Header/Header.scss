@@ -1,0 +1,141 @@
+header {
+    display: grid;
+    grid-template-columns: 10% 40% 10% 20% 10% 10%;
+    grid-template-rows: 80px;
+    background-color: $headersColors;
+    top: 0;
+    position: sticky;
+    z-index: 1;
+
+    #logoCompany {
+        @include totalSize;
+
+        img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+        }
+    }
+
+    #navBarMain {
+        @include totalSize;
+
+        #menuMain {
+            // @include gridCenter;
+            display: grid;
+            place-content: center;
+            grid-template-columns: repeat(3, 30%);
+            color: $colorLight;
+            padding-top: 20px;
+            
+
+            li {
+                @include totalSize;
+                @include borderRadiusButtons;
+                @include gridCenter;
+                grid-template-rows: 40px;
+                
+                
+
+                &:hover .submenuNavMain {
+                    visibility: visible;
+                }
+
+                a {
+                    text-align: center;
+                    text-decoration: none;
+                    color: $colorNight;
+
+                    @include hoverLink;
+                }
+
+                .submenuNavMain {
+                    @include gridCenter;
+                    grid-template-rows: auto;
+                    visibility: hidden;
+                    @include totalSize;
+                    margin-top: 40px;
+                    
+                    z-index: 1;
+                    background-color: $headersColors;
+                    border-bottom-right-radius: 20px;
+                    border-bottom-left-radius: 20px;
+                    li {
+                        @include totalSize;
+                        @include borderRadiusButtons;
+                        @include gridCenter;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+
+    
+    #seekerContent {
+        @include gridCenter;
+        @include totalSize;
+
+        #seekerImg {
+            @include totalSize;
+            
+        }
+        
+        #seekerInput {
+            width: 100%;
+            height: 40px;
+            @include borderRadiusButtons;
+            border: none;
+            padding: 20px;
+            
+            &:hover {
+                @include boxShadow;
+                @include transitionHover;
+            }
+        }
+    }
+
+    #userLogin {
+        
+        @include gridCenter;
+        list-style: none;
+        margin: auto;
+        &:hover .submenuNavLogin {
+            visibility: visible;
+        }
+        
+        #userLoginImg {
+            
+            height: 60%;
+            width: 50%;
+            cursor: pointer;
+        }
+
+        .submenuNavLogin {
+            visibility: hidden;
+            list-style: none;
+            @include gridCenter;
+            grid-template-rows: auto;
+            @include totalSize;
+            z-index: 1;
+            background-color: $headersColors;
+            margin-top: 12px;
+
+            li {
+                @include totalSize;
+                @include borderRadiusButtons;
+                @include gridCenter;
+                grid-template-rows: 40px;
+
+                a {
+                    text-align: center;
+                    text-decoration: none;
+                    color: $colorNight;
+
+                    @include hoverLink;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.night-mode-toggle {
+    @include gridCenter;
+    place-content: center;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 2rem;
+    
+    transition: background-color 0.3s ease;
+    @include totalSize;
+    .toggle-icon {
+        margin-right: 5px;
+        @include totalSize;
+        &:hover {
+            color: $hoversLinks;
+            transition: ease-in-out .7s;
+        }
+    }
+}
+body {
+    transition: background-color 0.3s ease;
+}
