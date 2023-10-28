@@ -92,6 +92,18 @@
             color: red;
         }
 
+        #optionsForm {
+
+            a,link{
+                text-align: center;
+                text-decoration: none;
+                text-transform: capitalize;
+                color: #fff;
+                @include hoverLink;
+                @include transitionHover;
+            }
+        }
+
         .btnSubmit {
             @include gridCenter;
             height: 40px;
