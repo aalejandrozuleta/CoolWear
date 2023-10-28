@@ -1,9 +1,20 @@
-const controller = {};
-const console = require('console'); 
-const { query } = require('express');
-const connection = require('mysql'); 
-const fs = require('fs');
+// controller.js
+const db = require('./bd');
 
-// controller here
+const controller = {};
+
+controller.singUpUser = (req, res) => { 
+  const register = req.body; 
+  console.log(register);
+
+  db.query('INSERT INTO USER SET ?', [register], (err, result) => { 
+    if (err) {
+      console.error('Error al insertar el usuario: ' + err.message);
+      res.redirect('/signUp');
+    } else {
+      res.redirect('/login');
+    }
+  });
+};
 
 module.exports = controller;

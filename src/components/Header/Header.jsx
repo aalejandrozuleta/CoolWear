@@ -51,7 +51,7 @@ export const Header = () => {
             text: "Iniciar Sesión",
         },
         {
-            path: "/register",
+            path: "/signUp",
             text: "Registrar",
         },
     ];

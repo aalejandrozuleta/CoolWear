@@ -1,0 +1,113 @@
+#blockForm {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: auto;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: $backgroundNight;
+    @include boxShadow;
+    text-align: center;
+
+    #backgroundSignUp {
+        background-image: linear-gradient(to top, #818181 0%, #cae5f3 100%);
+        @include totalSize;
+        margin: auto;
+        border-radius: 30px;
+        margin: 0 20px;
+        position: relative;
+        @include gridCenter;
+    }
+
+    #imgUserSignUp {
+        height: 400px;
+        width: 80%;
+        border-radius: 40px;
+        text-align: center;
+        text-transform: capitalize;
+
+        @include gridCenter;
+        grid-template-rows: 20% 60% 20%;
+
+        img {
+            @include totalSize;
+        }
+    }
+
+    #formUser {
+        @include gridCenter;
+        width: 400px;
+        height: auto;
+        margin: 10px auto;
+        background-color: $headersColors;
+        padding: 20px;
+        @include borderRadiusButtons;
+        @include boxShadow;
+
+        .formSet {
+            @include gridCenter;
+            grid-template-rows: 20% 60% 10%;
+
+            span {
+                color: $hoversLinks;
+            }
+
+            .labelForm {
+                @include totalSize;
+                text-align: center;
+                color: #fff;
+                @include gridCenter;
+            }
+
+            .blockInput {
+                @include gridCenter;
+                grid-template-columns: 20% 80%;
+                padding: 10px 20px;
+
+                .imgForm {
+                    width: 100%;
+                    height: 40%;
+                    margin: auto;
+                }
+
+                .inputForm {
+                    width: 100%;
+                    height: 50%;
+                    border-radius: 10px;
+                    border: none;
+                    padding: 10px;
+
+                    &:hover {
+                        @include boxShadow;
+                    }
+                }
+            }
+        }
+
+        #textError {
+            text-align: center;
+            text-transform: capitalize;
+            padding: 10px;
+            color: red;
+        }
+
+        .btnSubmit {
+            @include gridCenter;
+            height: 40px;
+            button {
+                height: 100%;
+                width: 100px;
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    @include boxShadow;
+                    color: #fff;
+                    @include hoverButton;
+                }
+            }
+        }
+    }
+}
