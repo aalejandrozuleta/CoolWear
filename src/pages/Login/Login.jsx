@@ -5,6 +5,8 @@ import UserSignUpImg from "../../../public/assets/login/userSingUp.svg";
 import EmailImg from "../../../public/assets/login/emailOption.svg";
 import PasswordImg from "../../../public/assets/login/padlock.svg";
 
+
+
 export default function Login() {
     return (
         <div>
@@ -12,7 +14,7 @@ export default function Login() {
             <section id="blockForm">
                 <div id="backgroundSignUp">
                     <figure id="imgUserSignUp">
-                        <h2>Regístrate</h2>
+                        <h2>Inicia Sesión</h2>
                         <img src={UserSignUpImg} alt="" />
                         <p>Tu registro en las mejores manos</p>
                     </figure>
@@ -52,8 +54,7 @@ export default function Login() {
                     </div>
 
                     <div id="optionsForm">
-                        {/* <link to="">Olvide mi contraseña </link> */}
-                        <a href="">olvide mi contraseña</a>
+                        <a href="/forgetPassword">Olvide mi contraseña </a>
                     </div>
 
                     <div className="btnSubmit">
@@ -62,7 +63,7 @@ export default function Login() {
                 </form>
             </section>
 
-            <Footer/>
+            <Footer />
         </div>
     );
 }

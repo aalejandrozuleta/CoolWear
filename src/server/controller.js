@@ -35,5 +35,37 @@ controller.loginUser = (req, res) => {
   });
 };
 
+controller.forgetPassword = (req, res) => {
+  const email = req.body.email_user;
+  const phone = req.body.phone_user;
+  const password = req.body.password_user;
+
+  db.query('SELECT * FROM USER WHERE email_user = ? AND phone_user = ?', [email, phone], (err, results) => {
+    if (err) {
+      console.error("Error:", err);
+      // error
+      res.status(500).json({ error: "An error occurred" });
+    } else {
+      // validation user exist
+      if (results.length === 0) {
+        // User not exist
+        res.status(404).json({ error: "User not found" });
+      } else {
+        // Update the user password
+        db.query('UPDATE USER SET password_user = ? WHERE email_user = ? AND phone_user = ?', [password, email, phone], (updateErr, updateResults) => {
+          if (updateErr) {
+            console.error("Error:", updateErr);
+            // Handle the update error
+            res.status(500).json({ error: "An error occurred while updating the password" });
+          } else {
+            res.redirect('/login'); 
+          }
+        });
+      }
+    }
+  });
+}
+
+
 
 module.exports = controller;
