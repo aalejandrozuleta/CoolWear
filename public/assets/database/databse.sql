@@ -1,19 +1,20 @@
--- First, drop tables if they exist
-DROP TABLE IF EXISTS BUYPRODUCT;
-DROP TABLE IF EXISTS PRODUCT;
-DROP TABLE IF EXISTS CATEGORY;
-DROP TABLE IF EXISTS USER;
-
 -- Next, drop the database if it exists
 DROP DATABASE IF EXISTS CoolWear;
 
 -- Now, create the database
 CREATE DATABASE CoolWear;
 USE CoolWear;
+-- First, drop tables if they exist
+DROP TABLE IF EXISTS BUYPRODUCT;
+DROP TABLE IF EXISTS PRODUCT;
+DROP TABLE IF EXISTS CATEGORY;
+DROP TABLE IF EXISTS USER;
+
 
 -- Create the USER table
 CREATE TABLE USER (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
+    img_user VARCHAR(500),
     name_user VARCHAR(50),
     phone_user VARCHAR(15),
     email_user VARCHAR(50),
