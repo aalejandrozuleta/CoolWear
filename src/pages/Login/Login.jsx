@@ -18,19 +18,18 @@ export default function Login() {
     const handleLogin = () => {
         loginUser(email, password)
             .then((response) => {
+                
                 if (response.data.success) {
+                    localStorage.setItem("isLoggedIn", "true"); //login true
                     setIsLoggedIn(true);
-                    // Almacenar el estado de autenticación en localStorage
-                    localStorage.setItem("isLoggedIn", "true");
                 } else {
-                    console.error("Login failed.");
+                    console.error("Login failed."); //login failed
                 }
             })
             .catch((error) => {
                 console.error("Request error:", error);
             });
     };
-    
 
     return (
         <div>

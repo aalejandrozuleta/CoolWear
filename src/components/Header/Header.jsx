@@ -5,9 +5,9 @@ import UserLogin from "../../../public/assets/main/userLogin.svg";
 import UserSettingsImg from "../../../public/assets/main/settingsOption.svg";
 import LogoCompany from "../../../public/assets/main/logoNoneBackground.png";
 
-const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-export const Header = () => {
+
+export const Header = ({ isLoggedIn }) => {
     const linkNav = [
         {
             path: "/",

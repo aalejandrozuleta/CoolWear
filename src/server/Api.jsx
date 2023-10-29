@@ -11,13 +11,14 @@ export const loginUser = (email, password) => {
 
 export const handleLogout = () => {
     axios.get('/api/logout') 
-      .then(() => {
-        window.location.href = '/login';
-      })
-      .catch((error) => {
-        console.error('Error al cerrar sesión: ', error);
-      });
-  };
+        .then(() => {
+            localStorage.setItem("isLoggedIn", "false");
+            window.location.href = '/login';
+        })
+        .catch((error) => {
+            console.error('Error al cerrar sesión: ', error);
+        });
+};
 
   export function useFetchUserData() {
     const [user, setUser] = useState({
