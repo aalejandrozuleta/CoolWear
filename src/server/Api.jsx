@@ -1,6 +1,5 @@
-// api.js
 import axios from "axios";
-
+import { useState, useEffect } from "react";
 // validation login true
 export const loginUser = (email, password) => {
     return axios.post("/api/loginUser", {
@@ -8,3 +7,48 @@ export const loginUser = (email, password) => {
         password_user: password,
     });
 };
+
+
+export const handleLogout = () => {
+    axios.get('/api/logout') 
+      .then(() => {
+        window.location.href = '/login';
+      })
+      .catch((error) => {
+        console.error('Error al cerrar sesión: ', error);
+      });
+  };
+
+  export function useFetchUserData() {
+    const [user, setUser] = useState({
+      name_user: "",
+      phone_user: "",
+      email_user: "",
+      password_user: ""
+    });
+  
+    useEffect(() => {
+      axios.get('/api/getUserData')
+        .then((response) => {
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.error('Error al obtener datos del usuario: ', error);
+        });
+    }, []);
+  
+    return user;
+  }
+
+  export const handleUpdateUser = (user) => {
+    e.preventDefault();
+  
+    axios.post('/api/updateUser', user)
+      .then((response) => {
+        console.log('Datos del usuario actualizados con éxito.');
+      })
+      .catch((error) => {
+        console.error('Error al actualizar datos del usuario: ', error);
+      });
+  };
+  
