@@ -1,9 +1,10 @@
 // controller.js
+const { redirect } = require('react-router-dom');
 const db = require('./bd');
 const controller = {};
 
 controller.singUpUser = (req, res) => { 
-  const register = req.body;  // Datos totales para el registro
+  const register = req.body;  //dates login
   db.query('INSERT INTO USER SET ?', [register], (err, result) => { 
     if (err) {
       console.error('Error al insertar el usuario: ' + err.message);
@@ -21,13 +22,13 @@ controller.loginUser = (req, res) => {
   db.query('SELECT * FROM USER WHERE email_user = ? AND password_user = ?', [email, password], (err, results) => {
     if (err) {
       console.error('Error al insertar el usuario: ' + err.message);
-      res.redirect('/login');
+      res.status(500).json({ success: false, message: "Error al insertar el usuario" });
     } else {
       if (results.length === 0) {
         console.log('Usuario no encontrado');
         res.status(401).json({ success: false, message: "Usuario no encontrado" });
       } else {
-        // Almacenar la información del usuario en la sesión
+        // Store cookies authorized
         const user = results[0];
         req.session.user = user;
 
@@ -56,6 +57,7 @@ controller.forgetPassword = (req, res) => {
             console.error("Error:", updateErr);
             res.status(500).json({ error: "Ocurrió un error al actualizar la contraseña" });
           } else {
+            console.log("Contraseña actualizada");
             res.redirect('/login');
           }
         });
@@ -93,7 +95,7 @@ controller.logoutUser = (req, res) => {
       console.error('Error al cerrar sesión:', err);
       res.status(500).json({ error: 'Error al cerrar sesión' });
     } else {
-      res.redirect('/login'); // Redirige al usuario a la página de inicio de sesión
+      res.redirect('/login');
     }
   });
 };
