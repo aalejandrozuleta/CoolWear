@@ -20,16 +20,17 @@ export default function Login() {
             .then((response) => {
                 if (response.data.success) {
                     setIsLoggedIn(true);
+                    // Almacenar el estado de autenticación en localStorage
+                    localStorage.setItem("isLoggedIn", "true");
                 } else {
-                    // Handle login failure
                     console.error("Login failed.");
                 }
             })
             .catch((error) => {
-                // Handle request error
                 console.error("Request error:", error);
             });
     };
+    
 
     return (
         <div>
