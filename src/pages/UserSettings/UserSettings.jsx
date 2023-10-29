@@ -6,9 +6,17 @@ import {
     handleUpdateUser,
     useFetchUserData,
 } from "../../server/Api";
+import { useNavigate } from "react-router-dom";
 
 export default function UserSettings() {
     const user = useFetchUserData();
+    const navigate = useNavigate(); // navegation import
+
+    const handleLogoutAndRedirect = () => {
+        handleLogout(); // Close settion
+        localStorage.removeItem("isLoggedIn"); //remove login (true by false)
+        navigate("/"); // render Home page
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -107,7 +115,7 @@ export default function UserSettings() {
                             Actualizar
                         </button>
 
-                        <button onClick={handleLogout}>Cerrar sesión</button>
+                        <button onClick={handleLogoutAndRedirect}>Cerrar sesión</button>
                     </div>
                 </form>
             </section>

@@ -7,7 +7,9 @@ import LogoCompany from "../../../public/assets/main/logoNoneBackground.png";
 
 
 
-export const Header = ({ isLoggedIn }) => {
+
+export const Header = () => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     const linkNav = [
         {
             path: "/",
