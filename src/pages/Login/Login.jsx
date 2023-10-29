@@ -18,7 +18,6 @@ export default function Login() {
     const handleLogin = () => {
         loginUser(email, password)
             .then((response) => {
-                
                 if (response.data.success) {
                     localStorage.setItem("isLoggedIn", "true"); //login true
                     setIsLoggedIn(true);
@@ -35,11 +34,13 @@ export default function Login() {
         <div>
             <Header isLoggedIn={isLoggedIn} />
             <section id="blockForm">
-                <figure id="imgUserSignUp">
-                    <h2>Inicia Sesión</h2>
-                    <img src={UserSignUpImg} alt="" />
-                    <p>Tu registro en las mejores manos</p>
-                </figure>
+                <div id="backgroundSignUp">
+                    <figure id="imgUserSignUp">
+                        <h2>Inicia Sesión</h2>
+                        <img src={UserSignUpImg} alt="" />
+                        <p>Tu registro en las mejores manos</p>
+                    </figure>
+                </div>
                 <form action="/api/loginUser" method="post" id="formUser">
                     <div className="formSet">
                         <label htmlFor="email_user" className="labelForm">
