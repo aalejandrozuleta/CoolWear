@@ -5,6 +5,7 @@ import  Login  from "./pages/Login/Login";
 import SingUp from "./pages/SignUp/SignUp";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserSettings from "./pages/UserSettings/UserSettings";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SingUp />} />
         <Route path="/forgetPassword" element={<ForgetPassword />} />
+        <Route path="/userSettings" element={<UserSettings />} />
       </Routes>
     </Router>
   )
