@@ -1,6 +1,5 @@
 // controller.js
 const db = require('./bd');
-
 const controller = {};
 
 controller.singUpUser = (req, res) => { 
@@ -25,12 +24,13 @@ controller.loginUser = (req, res) => {
       res.redirect('/login');
     } else {
       if (results.length === 0) {
-        console.log('User not found'); // User doesn't exist
-        res.redirect('/login'); // Redirect to login page or show an error message
-      } else {
+        console.log('User not found');
+        res.status(401).json({ success: false, message: "User not found" });
+    } else {
         console.log('User logged in successfully');
-        res.redirect('/'); // redirect Home page
-      }
+        res.status(200).json({ success: true, message: "User logged in successfully" });
+    }
+    
     }
   });
 };
@@ -65,7 +65,4 @@ controller.forgetPassword = (req, res) => {
     }
   });
 }
-
-
-
 module.exports = controller;

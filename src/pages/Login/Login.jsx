@@ -1,28 +1,48 @@
-import Footer from "../../components/Footer/Footer";
+import { useState } from "react";
+import { loginUser } from "../../server/Api";
 import { Header } from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
+// import img
 import UserSignUpImg from "../../../public/assets/login/userSingUp.svg";
 import EmailImg from "../../../public/assets/login/emailOption.svg";
 import PasswordImg from "../../../public/assets/login/padlock.svg";
 
-
-
 export default function Login() {
+    //optios change login
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    //
+    //function api
+    const handleLogin = () => {
+        loginUser(email, password)
+            .then((response) => {
+                if (response.data.success) {
+                    setIsLoggedIn(true);
+                } else {
+                    // Handle login failure
+                    console.error("Login failed.");
+                }
+            })
+            .catch((error) => {
+                // Handle request error
+                console.error("Request error:", error);
+            });
+    };
+
     return (
         <div>
-            <Header />
+            <Header isLoggedIn={isLoggedIn} />
             <section id="blockForm">
-                <div id="backgroundSignUp">
-                    <figure id="imgUserSignUp">
-                        <h2>Inicia Sesión</h2>
-                        <img src={UserSignUpImg} alt="" />
-                        <p>Tu registro en las mejores manos</p>
-                    </figure>
-                </div>
-
+                <figure id="imgUserSignUp">
+                    <h2>Inicia Sesión</h2>
+                    <img src={UserSignUpImg} alt="" />
+                    <p>Tu registro en las mejores manos</p>
+                </figure>
                 <form action="/api/loginUser" method="post" id="formUser">
                     <div className="formSet">
-                        <label htmlFor="" className="labelForm">
+                        <label htmlFor="email_user" className="labelForm">
                             Ingrese su correo
                         </label>
                         <div className="blockInput">
@@ -33,12 +53,13 @@ export default function Login() {
                                 id="email_user"
                                 name="email_user"
                                 required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                     </div>
-
                     <div className="formSet">
-                        <label htmlFor="" className="labelForm">
+                        <label htmlFor="password_user" className="labelForm">
                             Ingrese su Contraseña
                         </label>
                         <div className="blockInput">
@@ -49,16 +70,18 @@ export default function Login() {
                                 id="password_user"
                                 name="password_user"
                                 required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                     </div>
-
                     <div id="optionsForm">
-                        <a href="/forgetPassword">Olvide mi contraseña </a>
+                        <a href="/forgetPassword">Olvidé mi contraseña</a>
                     </div>
-
                     <div className="btnSubmit">
-                        <button type="submit">Iniciar Sesión</button>
+                        <button type="button" onClick={handleLogin}>
+                            Iniciar Sesión
+                        </button>
                     </div>
                 </form>
             </section>

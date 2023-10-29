@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import UserLogin from "../../../public/assets/main/userLogin.svg";
-import NightModeToggle from "../layouts/nightMode/NightMode";
-import LogoCompany from "../../../public/assets/main/logoNoneBackground.png";
 import CarShop from "../layouts/carShop/CarShop";
+import NightModeToggle from "../layouts/nightMode/NightMode";
+import UserLogin from "../../../public/assets/main/userLogin.svg";
+import UserSettingsImg from "../../../public/assets/main/settingsOption.svg";
+import LogoCompany from "../../../public/assets/main/logoNoneBackground.png";
 
-
-export const Header = () => {
+export const Header = ({ isLoggedIn }) => {
     const linkNav = [
         {
             path: "/",
@@ -85,8 +85,17 @@ export const Header = () => {
             <div id="seekerContent">
                 <input type="text" id="seekerInput" placeholder="Buscador" />
             </div>
-
             
+            {/* if isLogged true, change img */}
+            {isLoggedIn ? (
+                <Link to="/settingsUser" id="userLogin">
+                    <img
+                        id="userLoginImg"
+                        src={UserSettingsImg}
+                        alt="Configuración de usuario"
+                    />
+                </Link>
+            ) : ( // default False img userLogo
                 <li id="userLogin">
                     <img
                         id="userLoginImg"
@@ -101,6 +110,7 @@ export const Header = () => {
                         ))}
                     </ul>
                 </li>
+            )}
             <NightModeToggle />
         </header>
     );
