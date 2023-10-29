@@ -90,7 +90,7 @@ export const Header = () => {
             
             {/* if isLogged true, change img */}
             {isLoggedIn ? (
-                <Link to="/settingsUser" id="userLogin">
+                <Link to="/userSettings" id="userLogin">
                     <img
                         id="userLoginImg"
                         src={UserSettingsImg}

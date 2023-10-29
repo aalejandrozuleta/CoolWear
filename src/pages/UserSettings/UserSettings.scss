@@ -1,0 +1,81 @@
+#informationUser {
+    @include gridCenter;
+    height: 480px;
+    grid-template-columns: 40% 60%;
+    width: 60%;
+    background-color: $headersColors;
+    @include boxShadow;
+    margin: 20px auto;
+    @include borderRadiusButtons;
+
+    #imgUser {
+        @include boxShadow;
+        height: 70%;
+        width: 70%;
+        @include gridCenter;
+        @include borderRadiusButtons;
+        #userImg {
+            @include totalSize;
+        }
+        
+    }
+
+    #dataUser {
+        @include borderRadiusButtons;
+        display: grid;
+        @include boxShadow;
+        height: 70%;
+        width: 90%;
+        grid-template-rows:repeat(5,20%);
+    }
+
+    .userdate {
+        display: grid;
+        grid-template-rows: repeat(2,50%);
+        @include totalSize;
+        
+
+        .labelInfo {
+            text-align: center;
+            text-transform: capitalize;
+            margin: 10px;
+            color: $backgroundLight;
+        }
+
+        .inputInfo {
+            height: 35px;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+            margin: auto;
+
+            &:hover {
+                @include boxShadow;
+                @include transitionHover;
+            }
+        }
+
+    }
+    .btnOptionUser {
+        @include totalSize;
+        display: grid;
+        grid-template-columns: repeat(2,50%);
+        place-items: center;
+
+        button {
+            height: 60%;
+            width: 60%;
+            border: none;
+            @include borderRadiusButtons;
+            text-align: center;
+            text-transform: capitalize;
+            &:hover {
+                @include boxShadow;
+                @include transitionHover;
+                background-color: $hoversButtons;
+            }
+        }
+    }
+
+
+}
