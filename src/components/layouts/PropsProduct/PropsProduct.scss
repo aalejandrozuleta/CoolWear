@@ -1,0 +1,67 @@
+#blockBtnWatch{
+  @include totalSize;
+  @include flexCenter;
+  #btnWatchProduct {
+    height: 70%;
+    width: 95%;
+    @include borderRadiusButtons;
+    border: none;
+    text-transform: capitalize;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 1rem;
+    margin: auto 0;
+  
+    &:hover {
+      background-color: $hoversButtons;
+      color: $backgroundLight;
+      @include boxShadow;
+      @include transitionHover;
+    }
+  }
+
+}
+
+.modalBox {
+  background-color: $headersColors;
+  height: 80%;
+  width: 70%;
+  margin: 0 auto;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+#modalProducts {
+  margin-top: 10px;
+  display: grid;
+  grid-template-rows: 20% 80%;
+  #headerModal {
+    display: grid;
+    grid-template-columns: 80% 20%;
+
+    h3 {
+      color: $backgroundLight;
+      font-size: 1.5rem;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    button {
+      background-color: $headersColors;
+      color: $backgroundLight;
+      font-size: 1.5rem;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  }
+
+
+  #contenProductModal {
+    margin-top: 20px;
+  }
+
+}

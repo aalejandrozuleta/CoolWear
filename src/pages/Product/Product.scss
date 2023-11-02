@@ -1,0 +1,14 @@
+.titleCategoryproduct {
+    background-color: $headersColors;
+    text-align: center;
+    height: 40px;
+    color: $backgroundLight;
+    font-size: 1rem;
+}
+
+.productsList {
+    width: 90%;
+    margin: 20px auto;
+    @include flexCenter;
+    justify-content: space-around;
+}

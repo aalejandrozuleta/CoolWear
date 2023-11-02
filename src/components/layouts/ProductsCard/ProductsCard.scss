@@ -1,0 +1,54 @@
+.cardProduct {
+  height: 350px;
+  width: 300px;
+  display: grid;
+  grid-template-rows: 50% 20% 20%;
+  grid-template-columns: 300px;
+  row-gap: 2%;
+  border-radius: 5px;
+  border: 1px solid $hoversLinks;
+
+  &:hover {
+    @include boxShadow;
+  }
+
+  .blockImgProduct {
+    @include totalSize;
+    @include flexCenter;
+
+    img {
+      object-fit: contain;
+      height: 90%;
+      width: 50%;
+    }
+  }
+
+  .infoProductCard {
+    display: grid;
+    grid-template-rows: repeat(2,50%);
+    text-align: center;
+  }
+
+  .titleProductCard {
+    text-transform: capitalize;
+    &:hover {
+        color: $hoversLinks;
+        @include transitionHover;
+    }
+  }
+
+  .blockImgCarAdd {
+    @include totalSize;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    padding: 0 10px;
+
+    img {
+      object-fit: contain;
+      height: 60%;
+      width: 50%;
+      cursor: pointer;
+      margin: auto;
+    }
+  }
+}
