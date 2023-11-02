@@ -100,5 +100,17 @@ controller.logoutUser = (req, res) => {
   });
 };
 
+controller.getProducts = (req, res) => {
+  db.query('SELECT * FROM PRODUCT', (err, results) => {
+    if (err) {
+      console.error("Error al obtener productos:", err);
+      res.status(500).json({ error: "Error al obtener productos" });
+    } else {
+      console.log('Productos obtenidos con éxito');
+      res.status(200).json(results);
+    }
+  });
+};
+
 
 module.exports = controller;

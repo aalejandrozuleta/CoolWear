@@ -52,4 +52,14 @@ export const handleLogout = () => {
         console.error('Error al actualizar datos del usuario: ', error);
       });
   };
+
+  export const getProducts = async () => {
+    try {
+      const response = await axios.get("/api/getProducts"); // Asegúrate de que "/api/getProducts" sea la ruta correcta de tu API para obtener productos.
+      return response.data; // Devuelve los datos de los productos.
+    } catch (error) {
+      console.error("Error al obtener productos: ", error);
+      throw error;
+    }
+  };
   

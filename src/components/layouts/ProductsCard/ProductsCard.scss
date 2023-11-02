@@ -7,6 +7,7 @@
   row-gap: 2%;
   border-radius: 5px;
   border: 1px solid $hoversLinks;
+  margin: 0 auto;
 
   &:hover {
     @include boxShadow;

@@ -12,7 +12,11 @@ export default function ProductsCard({ imgCard, titleCard,priceCard }) {
       <p className="priceProductCard">{priceCard}</p>
       </div>
       <figure className="blockImgCarAdd">
-        <PropsProduct />
+        <PropsProduct 
+            imgProduct={imgCard}
+            nameProduct={titleCard}
+            priceProduct={priceCard}
+        />
         <img src={CardImg} alt="Agregar al carrito" />
       </figure>
     </article>
