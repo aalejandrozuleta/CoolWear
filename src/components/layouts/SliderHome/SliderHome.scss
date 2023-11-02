@@ -1,9 +1,48 @@
 #sliderHome {
     width: 50%;
-    height: 300px;
-    margin: 0 auto;
+    margin: 10px auto;
+    // background-image: linear-gradient(to top, #4de5f0 0%, #dabebed8 100%);
+    // background-image: linear-gradient(120deg, #eb3333 0%, #d85555 100%);
+    // background-image: linear-gradient(to top, #000000 0%, #33d2e7d8 100%);
+    background-image: linear-gradient(to right, #2d4257 0%, #070707 100%);
+    @include borderRadiusButtons;
+}
 
-    .slick-slider {
-        @include totalSize;
+.slick-slider {
+    display: grid;
+    grid-template-rows: 400px;
+}
+
+.slick-list {
+    @include totalSize;
+    display: grid;
+    place-content: center;
+    grid-template-rows: 400px;
+}
+
+.slick-prev,
+.slick-next {
+    width: 80px;
+    height: 50px;
+    z-index: 1;
+}
+
+.slick-dots {
+    li {
+        width: 40px;
+        margin: auto;
     }
+}
+
+#div {
+    @include totalSize;
+    @include gridCenter;
+    place-content: center;
+}
+
+.imgSliderHome {
+    width: 50%;
+    height: 50% ;
+    object-fit: contain;
+    margin: 0 auto;
 }

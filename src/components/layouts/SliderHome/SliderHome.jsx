@@ -2,6 +2,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+//imgs import
+import ShoesImg from '../../../../public/assets/product/shoes/jordanBlack.png';
+import DressBagsImg from '../../../../public/assets/product/dressBags/nikeRed.png';
+import ShirtsImg from '../../../../public/assets/product/shirts/gucciBlack.png';
+
 function SliderHome() {
   const settings = {
     dots: true,
@@ -17,13 +22,13 @@ function SliderHome() {
     <div id='sliderHome'>
     <Slider {...settings} id='div'>
       <div>
-        <h3>Slide 1</h3>
+        <img className='imgSliderHome' src={ShoesImg} alt="" />
       </div>
       <div>
-        <h3>Slide 2</h3>
+        <img className='imgSliderHome' src={DressBagsImg} alt="" />
       </div>
       <div>
-        <h3>Slide 3</h3>
+        <img className='imgSliderHome' src={ShirtsImg} alt="" />
       </div>
     </Slider>
     </div>
