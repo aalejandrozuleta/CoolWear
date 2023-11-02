@@ -22,7 +22,6 @@ export const Product = () => {
     <div>
       <Header />
       <section id="totalProducts">
-        <section id="shirts">
           <section className="productsList">
             {products.map((product) =>(
               <ProductsCard
@@ -30,10 +29,11 @@ export const Product = () => {
               imgCard={product.img_product}
               titleCard={product.name_product}
               priceCard={product.price_product}
+              descriptionCard={product.description_product}
+              stockCard={product.stock_product}
               />
             ))}
           </section>
-        </section>
       </section>
       <Footer/>
     </div>

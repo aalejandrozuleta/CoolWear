@@ -37,10 +37,11 @@
 #modalProducts {
   margin-top: 10px;
   display: grid;
-  grid-template-rows: 20% 80%;
+  grid-template-rows: 60px auto;
   #headerModal {
     display: grid;
     grid-template-columns: 80% 20%;
+    grid-template-rows: 60px;
 
     h3 {
       color: $backgroundLight;
@@ -61,7 +62,47 @@
 
 
   #contenProductModal {
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2,50%);
+    grid-template-rows: 90% 10%;
+    place-content: center;
+    height: 400px;
+
+    .imgProduct {
+      @include totalSize;
+      img{
+        @include totalSize;
+        object-fit: contain;
+      }
+    }
+
+    .informationProductModal {
+      @include gridCenter;
+      grid-template-rows: 15% 45% 15% 15%;
+      text-align: center;
+      color: $backgroundLight;
+      font-size: 1.2rem;
+      cursor: default;
+
+      .descriptionProduct {
+        padding: 0 10px;
+      }
+
+    }
+
+    .addProductCar {
+      @include totalSize;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      grid-column: 1/ span 2;
+
+      img {
+        height: 100%;
+        width: 50%;
+        cursor: pointer;
+      }
+    }
   }
 
 }

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
+import CarShopImg from "../../../../public/assets/main/carCash.svg";
+
 function PropsProduct({
   imgProduct,
   nameProduct,
   descriptionProduct,
   priceProduct,
   stockProduct,
-  categoryProduct,
 }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -22,7 +23,9 @@ function PropsProduct({
   return (
     <div>
       <div id="blockBtnWatch">
-      <button onClick={openModal} id="btnWatchProduct">ver producto</button>
+        <button onClick={openModal} id="btnWatchProduct">
+          ver producto
+        </button>
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -35,21 +38,25 @@ function PropsProduct({
             <button onClick={closeModal}>X</button>
           </div>
           <div id="contenProductModal">
-            <figure>
+            <figure className="imgProduct">
               <img src={imgProduct} alt="" />
             </figure>
 
-            <div id="informationProductModal">
-              <h3>{nameProduct}</h3>
+            <div className="informationProductModal">
+              <h3 className="nameProduct">{nameProduct}</h3>
 
-              <p>{descriptionProduct}</p>
+              <p className="descriptionProduct">{descriptionProduct}</p>
 
-              <p>{priceProduct}</p>
+              <p className="priceProduct">$ {priceProduct}</p>
 
-              <p>{stockProduct}</p>
-
-              <p>{categoryProduct}</p>
+              <p className="stockProduct">
+                Cantidad del producto: {stockProduct}
+              </p>
             </div>
+
+            <figure className="addProductCar">
+              <img src={CarShopImg} alt="" />
+            </figure>
           </div>
         </div>
       </Modal>
