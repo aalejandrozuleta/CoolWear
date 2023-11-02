@@ -43,11 +43,11 @@ export const Home = () => {
 
                 <article id="goalsComapanyText">
                     <h2>
-                        Nuestra empresa
+                    CoolWear
                     </h2>
 
                     <p>
-                    En CoolWear, te ofrecemos moda juvenil de alta calidad que abarca una variedad de estilos y tendencias. Nuestra ropa no solo te hará lucir bien, sino que también está diseñada para durar. Nuestro equipo de atención al cliente se dedica a satisfacer tus necesidades. Únete a nosotros y descubre cómo CoolWear puede elevar tu estilo.
+                     Te ofrecemos moda juvenil de alta calidad que abarca una variedad de estilos y tendencias. Nuestra ropa no solo te hará lucir bien, sino que también está diseñada para durar. Nuestro equipo de atención al cliente se dedica a satisfacer tus necesidades. Únete a nosotros y descubre cómo CoolWear puede elevar tu estilo.
                     </p>
                 </article>
             </section>
