@@ -8,6 +8,7 @@ export const Product = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("todo");
 
   useEffect(() => {
     getProducts()
@@ -20,12 +21,50 @@ export const Product = () => {
       });
   }, []);
 
+  useEffect(() => {
+    console.log("selectedCategory cambiado a:", selectedCategory);
+
+    if (selectedCategory) {
+      const categoryIDs = getCategoryID(selectedCategory);
+      if (categoryIDs.length === 0) {
+        setSearchResults(products);
+      } else {
+        const filteredProducts = products.filter((product) =>
+          categoryIDs.includes(product.fk_category_id)
+        );
+        console.log("Productos filtrados: ", filteredProducts);
+        setSearchResults(filteredProducts);
+      }
+    }
+  }, [selectedCategory, products]);
+
+  const getCategoryID = (categoryName) => {
+    switch (categoryName) {
+      case "Camisas":
+        console.log("camisas");
+        return [1];
+      case "Sacos":
+        console.log("sacos");
+        return [2];
+      case "Zapatos":
+        console.log("zapatos");
+        return [3];
+
+      case "Catalogo":
+        return [1, 2, 3];
+
+      default:
+        return [];
+    }
+  };
+
   return (
     <div>
       <Header
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         products={products}
+        setSelectedCategory={setSelectedCategory}
         setSearchResults={setSearchResults}
       />
 

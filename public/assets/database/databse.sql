@@ -51,8 +51,6 @@ CREATE TABLE BUYPRODUCT (
 );
 
 
-
-
 INSERT INTO CATEGORY (name_category) VALUES ('Shirts'),('Dress Bags'),('Shoes');
 
 INSERT INTO USER (email_user,password_user) VALUES ('admin@admin','admin');

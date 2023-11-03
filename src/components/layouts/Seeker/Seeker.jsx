@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Seeker({ searchTerm, setSearchTerm, products, setSearchResults }) {
   const handleSearch = (e) => {
     const term = e.target.value;
@@ -7,7 +9,7 @@ export default function Seeker({ searchTerm, setSearchTerm, products, setSearchR
       product.name_product && product.name_product.toLowerCase().includes(term.toLowerCase())
     );
     console.log('Productos filtrados:', filteredProducts);
-    //update date seeker
+    // update search results using the prop
     setSearchResults(filteredProducts);
   };
 
