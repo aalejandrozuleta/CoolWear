@@ -1,9 +1,10 @@
 .cardProduct {
   height: 350px;
-  width: 300px;
+  width: 25%;
   display: grid;
   grid-template-rows: 50% 20% 20%;
   grid-template-columns: 300px;
+  place-content: center;
   row-gap: 2%;
   border-radius: 5px;
   border: 1px solid $hoversLinks;

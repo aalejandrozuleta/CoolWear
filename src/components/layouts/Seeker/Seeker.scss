@@ -1,0 +1,22 @@
+#seekerContent {
+  @include gridCenter;
+  @include totalSize;
+
+  #seekerImg {
+      @include totalSize;
+      
+  }
+  
+  #seekerInput {
+      width: 100%;
+      height: 40px;
+      @include borderRadiusButtons;
+      border: none;
+      padding: 20px;
+      
+      &:hover {
+          @include boxShadow;
+          @include transitionHover;
+      }
+  }
+}

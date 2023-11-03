@@ -55,8 +55,8 @@ export const handleLogout = () => {
 
   export const getProducts = async () => {
     try {
-      const response = await axios.get("/api/getProducts"); // Asegúrate de que "/api/getProducts" sea la ruta correcta de tu API para obtener productos.
-      return response.data; // Devuelve los datos de los productos.
+      const response = await axios.get("/api/getProducts"); 
+      return response.data;
     } catch (error) {
       console.error("Error al obtener productos: ", error);
       throw error;
