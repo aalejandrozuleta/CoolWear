@@ -5,39 +5,35 @@ import CloseImg from "../../../../public/assets/main/closetOptions.svg";
 import { useState } from "react";
 
 function CarShop() {
-    const [isCarShopVisible, setCarShopVisible] = useState(false);
+  const [isCarShopVisible, setCarShopVisible] = useState(false);
 
-    const toggleCarShopVisibility = () => {
-        setCarShopVisible(!isCarShopVisible);
-    };
+  const toggleCarShopVisibility = () => {
+    setCarShopVisible(!isCarShopVisible);
+  };
 
-    return (
-        <figure id="carShopContent" onClick={toggleCarShopVisibility}>
-            <img
-                id="carShop"
-                src={CarShopImg}
-                alt="Esto es el carrito de compras"
-            />
+  return (
+    <figure id="carShopContent" onClick={toggleCarShopVisibility}>
+      <img id="carShop" src={CarShopImg} alt="Esto es el carrito de compras" />
 
-            {isCarShopVisible && (
-                <div id="contenCarShop">
-                    <div id="headerCarShop">
-                        <img src={SubstractImg} alt="" />
-                        <img src={CashImg} alt="" />
-                        <img src={CloseImg} alt="" />
-                    </div>
-                    <div id="productList">
-                        
-                    </div>
-                    <div id="footerCarShop">
-                        <p>
-                            Precio total: <span id="totalAmount">0</span>
-                        </p>
-                    </div>
-                </div>
-            )}
-        </figure>
-    );
+      {isCarShopVisible && (
+        <div id="contenCarShop">
+          <div id="headerCarShop">
+            <img src={SubstractImg} alt="" />
+            <img src={CashImg} alt="" />
+            <img src={CloseImg} alt="" />
+          </div>
+          <div id="productList">
+            
+          </div>
+          <div id="footerCarShop">
+            <p>
+              Precio total: <span id="totalAmount">0</span>
+            </p>
+          </div>
+        </div>
+      )}
+    </figure>
+  );
 }
 
 export default CarShop;

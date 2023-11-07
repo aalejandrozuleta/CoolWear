@@ -1,0 +1,21 @@
+.productCarShopItem {
+  display: grid;
+  grid-template-rows: 60% 40%;
+  margin-top: 10px;
+
+  .productCarShopInfo {
+    display: grid;
+    grid-template-rows: repeat(3, 30%);
+    height: 80px;
+  }
+
+  .subsTractImgProduct {
+    padding: 5px;
+    @include totalSize;
+
+    img {
+      @include totalSize;
+      cursor: pointer;
+    }
+  }
+}

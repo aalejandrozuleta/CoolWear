@@ -1,4 +1,4 @@
-#blockBtnWatch{
+#blockBtnWatch {
   @include totalSize;
   @include flexCenter;
   #btnWatchProduct {
@@ -11,7 +11,7 @@
     background-color: transparent;
     font-size: 1rem;
     margin: auto 0;
-  
+
     &:hover {
       background-color: $hoversButtons;
       color: $backgroundLight;
@@ -19,7 +19,6 @@
       @include transitionHover;
     }
   }
-
 }
 
 .modalBox {
@@ -60,17 +59,16 @@
     }
   }
 
-
   #contenProductModal {
     display: grid;
-    grid-template-columns: repeat(2,50%);
+    grid-template-columns: repeat(2, 50%);
     grid-template-rows: 90% 10%;
     place-content: center;
     height: 400px;
 
     .imgProduct {
       @include totalSize;
-      img{
+      img {
         @include totalSize;
         object-fit: contain;
       }
@@ -87,22 +85,33 @@
       .descriptionProduct {
         padding: 0 10px;
       }
-
     }
 
-    .addProductCar {
+    .addShopCar {
       @include totalSize;
-      display: flex;
-      justify-content: end;
-      align-items: center;
-      grid-column: 1/ span 2;
+      @include flexCenter;
+      grid-column: 2 / span 2;
 
-      img {
+      #stockProductShop {
         height: 100%;
-        width: 50%;
-        cursor: pointer;
+        width: 30px;
+        border-radius: 10px;
+        border: none;
+        text-align: center;
+        margin-right: 10px;
+      }
+
+      .addProductCar {
+        height: 60px;
+        width: 80px;
+        margin-left: 10px;
+
+        img {
+          height: 100%;
+          width: 50%;
+          cursor: pointer;
+        }
       }
     }
   }
-
 }

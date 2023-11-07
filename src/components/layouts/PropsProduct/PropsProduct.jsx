@@ -53,10 +53,17 @@ function PropsProduct({
                 Cantidad del producto: {stockProduct}
               </p>
             </div>
-
-            <figure className="addProductCar">
-              <img src={CarShopImg} alt="" />
-            </figure>
+            <div className="addShopCar">
+              <input
+                type="number"
+                id="stockProductShop"
+                defaultValue={1}
+                min={1}
+              />
+              <figure className="addProductCar">
+                <img src={CarShopImg} alt="" />
+              </figure>
+            </div>
           </div>
         </div>
       </Modal>
