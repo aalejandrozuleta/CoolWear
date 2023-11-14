@@ -136,9 +136,9 @@ export const Header = ({
             alt="Esto es la imagen para registrarse"
           />
           <ul className="submenuNavLogin">
-            {SubmenuLogin.map(({ text }, index) => (
+            {SubmenuLogin.map(({ text,path }, index) => (
               <li key={index}>
-                <Link>{text}</Link>
+                <Link to={path}>{text}</Link>
               </li>
             ))}
           </ul>
