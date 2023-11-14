@@ -3,13 +3,18 @@ import CashImg from "../../../../public/assets/main/carCash.svg";
 import SubstractImg from "../../../../public/assets/main/carSubstract.svg";
 import CloseImg from "../../../../public/assets/main/closetOptions.svg";
 import { useState } from "react";
+import CarShopItems from "../CarShopItems/CarShopItems";
 
-function CarShop() {
+function CarShop({ cartItems }) {
   const [isCarShopVisible, setCarShopVisible] = useState(false);
 
   const toggleCarShopVisibility = () => {
     setCarShopVisible(!isCarShopVisible);
   };
+
+  function calculateTotalPrice(cartItems) {
+    return cartItems.reduce((total, item) => total + item.priceProduct * item.quantity, 0).toFixed(2);
+  }
 
   return (
     <figure id="carShopContent" onClick={toggleCarShopVisibility}>
@@ -23,11 +28,13 @@ function CarShop() {
             <img src={CloseImg} alt="" />
           </div>
           <div id="productList">
-            
+            {cartItems.map((item, index) => (
+              <CarShopItems key={index} {...item} />
+            ))}
           </div>
           <div id="footerCarShop">
             <p>
-              Precio total: <span id="totalAmount">0</span>
+              Precio total: <span id="totalAmount">${calculateTotalPrice(cartItems)}</span>
             </p>
           </div>
         </div>

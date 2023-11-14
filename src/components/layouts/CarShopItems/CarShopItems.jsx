@@ -1,12 +1,12 @@
 import SubstractImg from '../../../../public/assets/main/carSubstract.svg';
 
-export default function CarShopItems() {
+export default function CarShopItems({ nameProduct, priceProduct, quantity }) {
   return (
     <div className="productCarShopItem">
       <div className="productCarShopInfo">
-        <p>Producto: </p>
-        <p>Precio: </p>
-        <p>Cantidad: </p>
+        <p>{nameProduct} </p>
+        <p> {priceProduct}</p>
+        <p>Cantidad: {quantity} </p>
       </div>
       <figure className="subsTractImgProduct">
         <img src={SubstractImg} alt="" />

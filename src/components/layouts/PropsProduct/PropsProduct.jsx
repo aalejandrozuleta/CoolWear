@@ -9,8 +9,10 @@ function PropsProduct({
   descriptionProduct,
   priceProduct,
   stockProduct,
+  addToCart,
 }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -18,6 +20,10 @@ function PropsProduct({
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const handleQuantityChange = (event) => {
+    setQuantity(parseInt(event.target.value, 10) || 1);
   };
 
   return (
@@ -59,9 +65,25 @@ function PropsProduct({
                 id="stockProductShop"
                 defaultValue={1}
                 min={1}
+                onChange={handleQuantityChange}
               />
               <figure className="addProductCar">
-                <img src={CarShopImg} alt="" />
+                <img
+                  src={CarShopImg}
+                  alt=""
+                  onClick={() => {
+                    addToCart({
+                      imgProduct,
+                      nameProduct,
+                      priceProduct,
+                      descriptionProduct,
+                      stockProduct,
+                      quantity,
+                    });
+                    console.log(`Añadido al carrito - Cantidad: ${quantity}`);
+                    closeModal(); 
+                  }}
+                />
               </figure>
             </div>
           </div>

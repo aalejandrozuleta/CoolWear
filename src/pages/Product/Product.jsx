@@ -9,6 +9,7 @@ export const Product = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("todo");
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     getProducts()
@@ -58,6 +59,10 @@ export const Product = () => {
     }
   };
 
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
   return (
     <div>
       <Header
@@ -66,6 +71,7 @@ export const Product = () => {
         products={products}
         setSelectedCategory={setSelectedCategory}
         setSearchResults={setSearchResults}
+        cartItems={cartItems}
       />
 
       <section className="productsList">
@@ -77,6 +83,7 @@ export const Product = () => {
             priceCard={product.price_product}
             descriptionCard={product.description_product}
             stockCard={product.stock_product}
+            addToCart={addToCart}
           />
         ))}
       </section>

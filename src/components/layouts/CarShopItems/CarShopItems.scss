@@ -2,6 +2,7 @@
   display: grid;
   grid-template-rows: 60% 40%;
   margin-top: 10px;
+  height: 100px;
 
   .productCarShopInfo {
     display: grid;
@@ -11,7 +12,6 @@
 
   .subsTractImgProduct {
     padding: 5px;
-    @include totalSize;
 
     img {
       @include totalSize;

@@ -13,6 +13,7 @@ export const Header = ({
   products,
   setSearchResults,
   setSelectedCategory,
+  cartItems,
 }) => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const linkNav = [
@@ -110,7 +111,7 @@ export const Header = ({
         </ul>
       </nav>
 
-      <CarShop />
+      <CarShop cartItems={cartItems} /> 
 
       <Seeker
         searchTerm={searchTerm}

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import CardImg from "../../../../public/assets/main/carCash.svg";
 import PropsProduct from "../PropsProduct/PropsProduct";
 
@@ -6,8 +7,19 @@ export default function ProductsCard({
   titleCard,
   descriptionCard,
   priceCard,
-  stockCard
+  stockCard,
+  addToCart,
 }) {
+  const handleClick = () => {
+    addToCart({
+      imgProduct: imgCard,
+      nameProduct: titleCard,
+      priceProduct: priceCard,
+      descriptionProduct: descriptionCard,
+      stockProduct: stockCard,
+    });
+  };
+
   return (
     <article className="cardProduct">
       <figure className="blockImgProduct">
@@ -17,16 +29,14 @@ export default function ProductsCard({
         <p className="titleProductCard">{titleCard}</p>
         <p className="priceProductCard">{priceCard}</p>
       </div>
-      <figure className="blockImgCarAdd">
         <PropsProduct
           imgProduct={imgCard}
           nameProduct={titleCard}
           priceProduct={priceCard}
           descriptionProduct={descriptionCard}
           stockProduct={stockCard}
+          addToCart={addToCart}
         />
-        <img src={CardImg} alt="Agregar al carrito" />
-      </figure>
     </article>
   );
 }
