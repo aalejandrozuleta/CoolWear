@@ -2,7 +2,7 @@ import CarShopImg from "../../../../public/assets/main/carShop.svg";
 import CashImg from "../../../../public/assets/main/carCash.svg";
 import SubstractImg from "../../../../public/assets/main/carSubstract.svg";
 import CloseImg from "../../../../public/assets/main/closetOptions.svg";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import CarShopItems from "../CarShopItems/CarShopItems";
 
 function CarShop({ cartItems, setCartItems }) {
@@ -17,7 +17,7 @@ function CarShop({ cartItems, setCartItems }) {
   const removeItemFromCart = (itemToRemove) => {
     // Verifica que setCartItems esté definido
     if (setCartItems) {
-      const updatedCart = cartItems.filter(item => item !== itemToRemove);
+      const updatedCart = cartItems.filter((item) => item !== itemToRemove);
       setCartItems(updatedCart);
       // Guarda el carrito actualizado en localStorage
       localStorage.setItem("cartItems", JSON.stringify(updatedCart));
@@ -25,8 +25,17 @@ function CarShop({ cartItems, setCartItems }) {
   };
 
   function calculateTotalPrice(cartItems) {
-    return cartItems.reduce((total, item) => total + item.priceProduct * item.quantity, 0).toFixed(2);
+    return cartItems
+      .reduce((total, item) => total + item.priceProduct * item.quantity, 0)
+      .toFixed(2);
   }
+
+  const clearCart = () => {
+    // clean cart
+    setCartItems([]);
+    // clean localStorage
+    localStorage.removeItem("cartItems");
+  };
 
   useEffect(() => {
     const storedVisibility = localStorage.getItem("isCarShopVisible");
@@ -43,7 +52,7 @@ function CarShop({ cartItems, setCartItems }) {
       {isCarShopVisible && (
         <div id="contenCarShop">
           <div id="headerCarShop">
-            <img src={SubstractImg} alt="" />
+            <img src={SubstractImg} alt="" onClick={clearCart} />
             <img src={CashImg} alt="" />
             <img src={CloseImg} alt="" />
           </div>
@@ -58,7 +67,8 @@ function CarShop({ cartItems, setCartItems }) {
           </div>
           <div id="footerCarShop">
             <p>
-              Precio total: <span id="totalAmount">${calculateTotalPrice(cartItems)}</span>
+              Precio total:{" "}
+              <span id="totalAmount">${calculateTotalPrice(cartItems)}</span>
             </p>
           </div>
         </div>
