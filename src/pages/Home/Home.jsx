@@ -9,11 +9,25 @@ import ShoesImg from "../../../public/assets/product/shoes/airForceBlack.png";
 import DressBagsImg from "../../../public/assets/product/dressBags/foxBlue.png";
 import ShirtsImg from "../../../public/assets/product/shirts/armaniBlack.png";
 import GoalsImg from "../../../public/assets/Home/ideaHome.svg";
+import { useState,useEffect } from "react";
 
 export const Home = () => {
+    const [cartItems, setCartItems] = useState([]);
+
+    useEffect(() => {
+        // get cart items the localStorage
+        const storedCartItems = localStorage.getItem("cartItems");
+      
+        if (storedCartItems) {
+          setCartItems(JSON.parse(storedCartItems));
+        }
+      }, []);
+      
     return (
         <div>
-            <Header />
+            <Header 
+            cartItems={cartItems}
+            />
             <SliderHome />
             <section id="carsProducts">
                 <Card3D

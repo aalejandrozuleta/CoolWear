@@ -60,8 +60,25 @@ export const Product = () => {
   };
 
   const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
+    //copy products actuality
+    const updatedCartItems = [...cartItems, product];
+  
+    //update state cart
+    setCartItems(updatedCartItems);
+  
+    // save in localStorage
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
+
+  useEffect(() => {
+    // get cart items the localStorage
+    const storedCartItems = localStorage.getItem("cartItems");
+  
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
+  
 
   return (
     <div>
