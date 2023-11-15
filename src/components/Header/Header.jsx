@@ -14,6 +14,7 @@ export const Header = ({
   setSearchResults,
   setSelectedCategory,
   cartItems,
+  setCartItems,
 }) => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const linkNav = [
@@ -40,7 +41,7 @@ export const Header = ({
         {
           path: "/product",
           text: "Catalogo",
-        }
+        },
       ],
     },
     {
@@ -111,7 +112,7 @@ export const Header = ({
         </ul>
       </nav>
 
-      <CarShop cartItems={cartItems} /> 
+      <CarShop cartItems={cartItems} setCartItems={setCartItems} />
 
       <Seeker
         searchTerm={searchTerm}
@@ -137,7 +138,7 @@ export const Header = ({
             alt="Esto es la imagen para registrarse"
           />
           <ul className="submenuNavLogin">
-            {SubmenuLogin.map(({ text,path }, index) => (
+            {SubmenuLogin.map(({ text, path }, index) => (
               <li key={index}>
                 <Link to={path}>{text}</Link>
               </li>

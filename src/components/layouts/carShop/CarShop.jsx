@@ -5,13 +5,23 @@ import CloseImg from "../../../../public/assets/main/closetOptions.svg";
 import { useState,useEffect } from "react";
 import CarShopItems from "../CarShopItems/CarShopItems";
 
-function CarShop({ cartItems }) {
+function CarShop({ cartItems, setCartItems }) {
   const [isCarShopVisible, setCarShopVisible] = useState(false);
 
   const toggleCarShopVisibility = () => {
     setCarShopVisible(!isCarShopVisible);
-    //save visibiliti the cart in localStorage
+    // Guarda la visibilidad del carrito en localStorage
     localStorage.setItem("isCarShopVisible", !isCarShopVisible);
+  };
+
+  const removeItemFromCart = (itemToRemove) => {
+    // Verifica que setCartItems esté definido
+    if (setCartItems) {
+      const updatedCart = cartItems.filter(item => item !== itemToRemove);
+      setCartItems(updatedCart);
+      // Guarda el carrito actualizado en localStorage
+      localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+    }
   };
 
   function calculateTotalPrice(cartItems) {
@@ -20,12 +30,11 @@ function CarShop({ cartItems }) {
 
   useEffect(() => {
     const storedVisibility = localStorage.getItem("isCarShopVisible");
-  
+
     if (storedVisibility) {
       setCarShopVisible(JSON.parse(storedVisibility));
     }
   }, []);
-  
 
   return (
     <figure id="carShopContent" onClick={toggleCarShopVisibility}>
@@ -40,7 +49,11 @@ function CarShop({ cartItems }) {
           </div>
           <div id="productList">
             {cartItems.map((item, index) => (
-              <CarShopItems key={index} {...item} />
+              <CarShopItems
+                key={index}
+                {...item}
+                onRemove={() => removeItemFromCart(item)}
+              />
             ))}
           </div>
           <div id="footerCarShop">

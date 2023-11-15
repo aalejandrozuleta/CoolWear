@@ -89,6 +89,7 @@ export const Product = () => {
         setSelectedCategory={setSelectedCategory}
         setSearchResults={setSearchResults}
         cartItems={cartItems}
+        setCartItems={setCartItems}
       />
 
       <section className="productsList">
