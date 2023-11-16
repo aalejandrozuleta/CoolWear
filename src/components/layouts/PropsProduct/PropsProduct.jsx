@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-
 import CarShopImg from "../../../../public/assets/main/carCash.svg";
 
 function PropsProduct({
@@ -11,8 +10,13 @@ function PropsProduct({
   stockProduct,
   addToCart,
 }) {
+  const [isAddToCartDisabled, setIsAddToCartDisabled] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    setIsAddToCartDisabled(quantity > stockProduct);
+  }, [quantity, stockProduct]);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -24,6 +28,23 @@ function PropsProduct({
 
   const handleQuantityChange = (event) => {
     setQuantity(parseInt(event.target.value, 10) || 1);
+  };
+
+  const handleAddToCart = () => {
+    if (isAddToCartDisabled) {
+      alert("La cantidad seleccionada supera la disponibilidad del producto");
+    } else {
+      addToCart({
+        imgProduct,
+        nameProduct,
+        priceProduct,
+        descriptionProduct,
+        stockProduct,
+        quantity,
+      });
+      console.log(`Añadido al carrito - Cantidad: ${quantity}`);
+      closeModal();
+    }
   };
 
   return (
@@ -40,7 +61,7 @@ function PropsProduct({
       >
         <div id="modalProducts">
           <div id="headerModal">
-            <h3>Infromacion de esta prenda</h3>
+            <h3>Información de esta prenda</h3>
             <button onClick={closeModal}>X</button>
           </div>
           <div id="contenProductModal">
@@ -71,18 +92,8 @@ function PropsProduct({
                 <img
                   src={CarShopImg}
                   alt=""
-                  onClick={() => {
-                    addToCart({
-                      imgProduct,
-                      nameProduct,
-                      priceProduct,
-                      descriptionProduct,
-                      stockProduct,
-                      quantity,
-                    });
-                    console.log(`Añadido al carrito - Cantidad: ${quantity}`);
-                    closeModal(); 
-                  }}
+                  onClick={handleAddToCart}
+                  disabled={isAddToCartDisabled}
                 />
               </figure>
             </div>
