@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import CardImg from "../../../../public/assets/main/carCash.svg";
 import PropsProduct from "../PropsProduct/PropsProduct";
 
 export default function ProductsCard({
+  id_product, 
   imgCard,
   titleCard,
   descriptionCard,
@@ -12,6 +11,7 @@ export default function ProductsCard({
 }) {
   const handleClick = () => {
     addToCart({
+      id_product,
       imgProduct: imgCard,
       nameProduct: titleCard,
       priceProduct: priceCard,
@@ -30,6 +30,7 @@ export default function ProductsCard({
         <p className="priceProductCard">{priceCard}</p>
       </div>
         <PropsProduct
+          id_product={id_product} 
           imgProduct={imgCard}
           nameProduct={titleCard}
           priceProduct={priceCard}

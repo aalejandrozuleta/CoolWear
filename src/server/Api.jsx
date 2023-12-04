@@ -42,8 +42,6 @@ export const handleLogout = () => {
   }
 
   export const handleUpdateUser = (user) => {
-    e.preventDefault();
-  
     axios.post('/api/updateUser', user)
       .then((response) => {
         console.log('Datos del usuario actualizados con éxito.');
@@ -52,6 +50,7 @@ export const handleLogout = () => {
         console.error('Error al actualizar datos del usuario: ', error);
       });
   };
+  
 
   export const getProducts = async () => {
     try {

@@ -10,16 +10,16 @@ function CarShop({ cartItems, setCartItems }) {
 
   const toggleCarShopVisibility = () => {
     setCarShopVisible(!isCarShopVisible);
-    // Guarda la visibilidad del carrito en localStorage
+    // save visibilite th carshop in localStorage
     localStorage.setItem("isCarShopVisible", !isCarShopVisible);
   };
 
   const removeItemFromCart = (itemToRemove) => {
-    // Verifica que setCartItems esté definido
+    // validate setCartItems 
     if (setCartItems) {
       const updatedCart = cartItems.filter((item) => item !== itemToRemove);
       setCartItems(updatedCart);
-      // Guarda el carrito actualizado en localStorage
+      // save update carshop in localStorage
       localStorage.setItem("cartItems", JSON.stringify(updatedCart));
     }
   };

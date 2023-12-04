@@ -112,5 +112,46 @@ controller.getProducts = (req, res) => {
   });
 };
 
+controller.updateProductQuantity = (req, res) => {
+  try {
+    const productId = parseInt(req.body.id_product);
+    // validation id product is valided
+    if (isNaN(productId)) {
+      console.error('El valor de productId no es un número válido:', productId);
+      res.status(400).json({ error: 'El valor de productId no es un número válido' });
+      return;
+    }
+    
+    const newQuantity = req.body.newQuantity;
+    console.log(newQuantity);
+
+    // Validation for stock the producto 
+    db.query('SELECT * FROM PRODUCT WHERE id_product = ?', [productId], (selectErr, selectResult) => {
+      if (selectErr) {
+        console.error('Error al verificar la existencia del producto:', selectErr);
+        res.status(500).json({ error: 'Error al verificar la existencia del producto', details: selectErr.message });
+      } else if (selectResult.length === 0) {
+        console.error('El producto con ID', productId, 'no existe en la base de datos');
+        res.status(404).json({ error: 'Producto no encontrado', details: 'El producto no existe en la base de datos' });
+      } else {
+        // update producto
+        db.query('UPDATE PRODUCT SET stock_product = ? WHERE id_product = ?', [newQuantity, productId], (updateErr, updateResult) => {
+          if (updateErr) {
+            console.error('Error al actualizar la cantidad de productos:', updateErr);
+            res.status(500).json({ error: 'Error al actualizar la cantidad de productos', details: updateErr.message });
+          } else {
+            console.log('Resultado de la actualización:', updateResult);
+            console.log('Cantidad de productos actualizada con éxito');
+            res.status(200).json({ success: true, message: 'Cantidad de productos actualizada con éxito' });
+          }
+        });
+      }
+    });
+  } catch (error) {
+    console.error('Error en el controlador:', error);
+    res.status(500).json({ error: 'Error interno del servidor', details: error.message });
+  }
+};
+
 
 module.exports = controller;
