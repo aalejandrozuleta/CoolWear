@@ -96,6 +96,7 @@ export const Product = () => {
         {searchResults.map((product) => (
           // eslint-disable-next-line react/jsx-key
           <ProductsCard
+            key={product.id_product}
             id_product={product.id_product}
             imgCard={product.img_product}
             titleCard={product.name_product}
