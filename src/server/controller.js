@@ -153,5 +153,49 @@ controller.updateProductQuantity = (req, res) => {
   }
 };
 
+controller.returnProductQuantity = (req, res) => {
+  try {
+    const productId = parseInt(req.body.id_product);
+
+    if (isNaN(productId)) {
+      console.error('El valor de productId no es un número válido:', productId);
+      res.status(400).json({ error: 'El valor de productId no es un número válido' });
+      return;
+    }
+
+    const returnedQuantity = req.body.returnedQuantity;
+    console.log(returnedQuantity);
+
+    // Validar la existencia del producto
+    db.query('SELECT * FROM PRODUCT WHERE id_product = ?', [productId], (selectErr, selectResult) => {
+      if (selectErr) {
+        console.error('Error al verificar la existencia del producto:', selectErr);
+        res.status(500).json({ error: 'Error al verificar la existencia del producto', details: selectErr.message });
+      } else if (selectResult.length === 0) {
+        console.error('El producto con ID', productId, 'no existe en la base de datos');
+        res.status(404).json({ error: 'Producto no encontrado', details: 'El producto no existe en la base de datos' });
+      } else {
+        // Devolver la cantidad al stock del producto
+        const currentStock = selectResult[0].stock_product;
+        const updatedStock = currentStock + returnedQuantity;
+
+        db.query('UPDATE PRODUCT SET stock_product = ? WHERE id_product = ?', [updatedStock, productId], (updateErr, updateResult) => {
+          if (updateErr) {
+            console.error('Error al devolver la cantidad de productos:', updateErr);
+            res.status(500).json({ error: 'Error al devolver la cantidad de productos', details: updateErr.message });
+          } else {
+            console.log('Resultado de la devolución:', updateResult);
+            console.log('Cantidad de productos devuelta con éxito');
+            res.status(200).json({ success: true, message: 'Cantidad de productos devuelta con éxito' });
+          }
+        });
+      }
+    });
+  } catch (error) {
+    console.error('Error en el controlador:', error);
+    res.status(500).json({ error: 'Error interno del servidor', details: error.message });
+  }
+};
+
 
 module.exports = controller;

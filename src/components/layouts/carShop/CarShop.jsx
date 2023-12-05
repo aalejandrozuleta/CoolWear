@@ -15,7 +15,7 @@ function CarShop({ cartItems, setCartItems }) {
   };
 
   const removeItemFromCart = (itemToRemove) => {
-    // validate setCartItems 
+    // validate setCartItems
     if (setCartItems) {
       const updatedCart = cartItems.filter((item) => item !== itemToRemove);
       setCartItems(updatedCart);
@@ -60,7 +60,10 @@ function CarShop({ cartItems, setCartItems }) {
             {cartItems.map((item, index) => (
               <CarShopItems
                 key={index}
-                {...item}
+                id_product={item.id_product}
+                nameProduct={item.nameProduct}
+                priceProduct={item.priceProduct}
+                quantity={item.quantity}
                 onRemove={() => removeItemFromCart(item)}
               />
             ))}
