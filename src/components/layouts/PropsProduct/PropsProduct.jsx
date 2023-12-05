@@ -34,35 +34,47 @@ function PropsProduct({
 
   const handleAddToCart = async () => {
     try {
-      if (isAddToCartDisabled) {
-        alert("La cantidad seleccionada supera la disponibilidad del producto");
-      } else {
-        // Update el stock local
-        const updatedStock = stockProduct - quantity;
-        addToCart({
-          id_product,
-          imgProduct,
-          nameProduct,
-          priceProduct,
-          descriptionProduct,
-          stockProduct: updatedStock,
-          quantity,
-        });
+      // Actualizar el estado local antes de realizar la operación en la base de datos
+      const updatedStock = stockProduct - quantity;
+      addToCart({
+        id_product,
+        imgProduct,
+        nameProduct,
+        priceProduct,
+        descriptionProduct,
+        stockProduct: updatedStock,
+        quantity,
+      });
   
-        // update the stock in the server
-        await axios.post('/api/updateProductQuantity', {
-          id_product: id_product,
-          newQuantity: updatedStock,
-        });
+      // Realizar la operación en la base de datos
+      await axios.post('/api/updateProductQuantity', {
+        id_product: id_product,
+        newQuantity: updatedStock,
+      });
   
-        console.log('Respuesta del servidor: Stock actualizado con éxito');
-        console.log(`Añadido al carrito - Cantidad: ${quantity}`);
-        closeModal();
-      }
+      console.log('Respuesta del servidor: Stock actualizado con éxito');
+      console.log(`Añadido al carrito - Cantidad: ${quantity}`);
+  
+      // Cerrar el modal después de que la operación en la base de datos sea exitosa
+      closeModal();
+
+      window.location.reload();
     } catch (error) {
       console.error('Error al procesar la operación:', error);
+  
+      // En caso de error, revertir la actualización del estado local
+      addToCart({
+        id_product,
+        imgProduct,
+        nameProduct,
+        priceProduct,
+        descriptionProduct,
+        stockProduct,
+        quantity,
+      });
     }
   };
+  
   
 
   return (
