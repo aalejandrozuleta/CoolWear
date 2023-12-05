@@ -197,5 +197,46 @@ controller.returnProductQuantity = (req, res) => {
   }
 };
 
+controller.returnProductsQuantity = async (req, res) => {
+  try {
+    // Obtén los productos del cuerpo de la solicitud
+    const products = req.body.products;
+
+    // Validar que la propiedad 'products' sea un array válido
+    if (!Array.isArray(products)) {
+      console.error('La propiedad products no es un array válido:', products);
+      res.status(400).json({ error: 'La propiedad products no es un array válido' });
+      return;
+    }
+
+    // Realizar las actualizaciones en la base de datos para devolver las cantidades al stock
+    for (const product of products) {
+      // Verificar que las propiedades necesarias estén presentes en el objeto product
+      if (!product || isNaN(product.id_product) || isNaN(product.quantity)) {
+        console.error('Objeto de producto inválido:', product);
+        res.status(400).json({ error: 'Objeto de producto inválido' });
+        return;
+      }
+
+      const productId = product.id_product;
+      const returnedQuantity = product.quantity;
+
+      // Actualizar la cantidad de productos en la base de datos
+      try {
+        await db.promise().query('UPDATE PRODUCT SET stock_product = stock_product + ? WHERE id_product = ?', [returnedQuantity, productId]);
+      } catch (updateErr) {
+        console.error('Error al devolver la cantidad de productos al stock:', updateErr);
+        res.status(500).json({ error: 'Error al devolver la cantidad de productos al stock', details: updateErr.message });
+        return;
+      }
+    }
+
+    console.log('Cantidades devueltas al stock con éxito');
+    res.status(200).json({ success: true, message: 'Cantidades devueltas al stock con éxito' });
+  } catch (error) {
+    console.error('Error en el controlador de devolución de cantidades al stock:', error);
+    res.status(500).json({ error: 'Error interno del servidor', details: error.message });
+  }
+};
 
 module.exports = controller;

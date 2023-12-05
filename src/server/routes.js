@@ -11,6 +11,7 @@ routes.post('/api/loginUser',CoolWear.loginUser);
 routes.post('/api/forgetPassword',CoolWear.forgetPassword);
 routes.post('/api/updateProductQuantity', CoolWear.updateProductQuantity);
 routes.post('/api/returnProductQuantity',CoolWear.returnProductQuantity);
+routes.post('/api/returnProductsQuantity',CoolWear.returnProductsQuantity)
 //routes.post('/api/updateUser',CoolWear.updateUser);
 
 

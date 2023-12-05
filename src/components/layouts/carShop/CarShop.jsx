@@ -4,6 +4,7 @@ import SubstractImg from "../../../../public/assets/main/carSubstract.svg";
 import CloseImg from "../../../../public/assets/main/closetOptions.svg";
 import { useState, useEffect } from "react";
 import CarShopItems from "../CarShopItems/CarShopItems";
+import axios from "axios";
 
 function CarShop({ cartItems, setCartItems }) {
   const [isCarShopVisible, setCarShopVisible] = useState(false);
@@ -30,12 +31,29 @@ function CarShop({ cartItems, setCartItems }) {
       .toFixed(2);
   }
 
-  const clearCart = () => {
-    // clean cart
-    setCartItems([]);
-    // clean localStorage
-    localStorage.removeItem("cartItems");
+  const clearCart = async (cartItems) => {
+    try {
+      // Crear una lista de productos con la estructura esperada por el servidor
+      const products = cartItems.map((item) => ({
+        id_product: item.id_product,
+        quantity: item.quantity,  // Corregir aquí
+      }));
+  
+      // Realizar la solicitud al servidor para devolver las cantidades al stock
+      await axios.post('/api/returnProductsQuantity', { products });
+  
+      // Limpiar el carrito localmente
+      setCartItems([]);
+      localStorage.removeItem("cartItems");
+  
+      console.log('Cantidades devueltas al stock y carrito limpiado con éxito');
+      window.location.reload();
+    } catch (error) {
+      console.error('Error al limpiar el carrito y devolver cantidades al stock:', error);
+    }
   };
+  
+  
 
   useEffect(() => {
     const storedVisibility = localStorage.getItem("isCarShopVisible");
@@ -52,7 +70,7 @@ function CarShop({ cartItems, setCartItems }) {
       {isCarShopVisible && (
         <div id="contenCarShop">
           <div id="headerCarShop">
-            <img src={SubstractImg} alt="" onClick={clearCart} />
+          <img src={SubstractImg} alt="" onClick={() => clearCart(cartItems)} />
             <img src={CashImg} alt="" />
             <img src={CloseImg} alt="" />
           </div>
