@@ -103,6 +103,11 @@ body {
 body.night-mode  {
     background-color: $backgroundNight;
     color: $colorNight;
+    
+    button {
+        color: $colorLight;
+    }
+    
 }
 
 * {
