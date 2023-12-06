@@ -2,14 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/**/*",
-      "use": "@vercel/static"
+      "src": "src/server/**/*",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "server/$1" },
-    { "src": "/product*", "dest": "dist/index.html" },
-    { "src": "/(.*)", "dest": "dist/$1" }
+    { "src": "/api/(.*)", "dest": "src/server/api.jsx" },
+    { "src": "/controllers/(.*)", "dest": "src/server/controller.js" },
+    { "src": "/routes/(.*)", "dest": "src/server/routes.js" },
+    { "src": "/(.*)", "dest": "src/server.js" }
   ],
   "env": {
     "DB_HOST": "localhost",
