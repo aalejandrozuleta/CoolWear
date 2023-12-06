@@ -115,7 +115,10 @@ export const Header = ({
                     {item.text}
                   </Link>
                 ) : (
-                  <Link to={item.path} onClick={() => handleCategoryClick(item.text)}>
+                  <Link
+                    to={item.path}
+                    onClick={() => handleCategoryClick(item.text)}
+                  >
                     {item.text}
                   </Link>
                 )
