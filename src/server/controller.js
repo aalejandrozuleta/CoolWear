@@ -41,10 +41,15 @@ controller.loginUser = (req, res) => {
           req.session.isLoggedIn = true;
 
           //validate if user is la dmin
-          req.session.isAdmin = user.email_user === "admin@admin" && user.password_user === "admin";
+          req.session.isAdmin =
+            user.email_user === "admin@admin" && user.password_user === "admin";
 
-          console.log('Usuario autenticado con éxito');
-          res.status(200).json({ success: true, message: "Usuario autenticado con éxito", isAdmin: req.session.isAdmin });
+          console.log("Usuario autenticado con éxito");
+          res.status(200).json({
+            success: true,
+            message: "Usuario autenticado con éxito",
+            isAdmin: req.session.isAdmin,
+          });
         }
       }
     }
@@ -73,11 +78,9 @@ controller.forgetPassword = (req, res) => {
             (updateErr, updateResults) => {
               if (updateErr) {
                 console.error("Error:", updateErr);
-                res
-                  .status(500)
-                  .json({
-                    error: "Ocurrió un error al actualizar la contraseña",
-                  });
+                res.status(500).json({
+                  error: "Ocurrió un error al actualizar la contraseña",
+                });
               } else {
                 console.log("Contraseña actualizada");
                 res.redirect("/login");
@@ -163,24 +166,20 @@ controller.updateProductQuantity = (req, res) => {
             "Error al verificar la existencia del producto:",
             selectErr
           );
-          res
-            .status(500)
-            .json({
-              error: "Error al verificar la existencia del producto",
-              details: selectErr.message,
-            });
+          res.status(500).json({
+            error: "Error al verificar la existencia del producto",
+            details: selectErr.message,
+          });
         } else if (selectResult.length === 0) {
           console.error(
             "El producto con ID",
             productId,
             "no existe en la base de datos"
           );
-          res
-            .status(404)
-            .json({
-              error: "Producto no encontrado",
-              details: "El producto no existe en la base de datos",
-            });
+          res.status(404).json({
+            error: "Producto no encontrado",
+            details: "El producto no existe en la base de datos",
+          });
         } else {
           // update producto
           db.query(
@@ -192,21 +191,17 @@ controller.updateProductQuantity = (req, res) => {
                   "Error al actualizar la cantidad de productos:",
                   updateErr
                 );
-                res
-                  .status(500)
-                  .json({
-                    error: "Error al actualizar la cantidad de productos",
-                    details: updateErr.message,
-                  });
+                res.status(500).json({
+                  error: "Error al actualizar la cantidad de productos",
+                  details: updateErr.message,
+                });
               } else {
                 console.log("Resultado de la actualización:", updateResult);
                 console.log("Cantidad de productos actualizada con éxito");
-                res
-                  .status(200)
-                  .json({
-                    success: true,
-                    message: "Cantidad de productos actualizada con éxito",
-                  });
+                res.status(200).json({
+                  success: true,
+                  message: "Cantidad de productos actualizada con éxito",
+                });
               }
             }
           );
@@ -246,24 +241,20 @@ controller.returnProductQuantity = (req, res) => {
             "Error al verificar la existencia del producto:",
             selectErr
           );
-          res
-            .status(500)
-            .json({
-              error: "Error al verificar la existencia del producto",
-              details: selectErr.message,
-            });
+          res.status(500).json({
+            error: "Error al verificar la existencia del producto",
+            details: selectErr.message,
+          });
         } else if (selectResult.length === 0) {
           console.error(
             "El producto con ID",
             productId,
             "no existe en la base de datos"
           );
-          res
-            .status(404)
-            .json({
-              error: "Producto no encontrado",
-              details: "El producto no existe en la base de datos",
-            });
+          res.status(404).json({
+            error: "Producto no encontrado",
+            details: "El producto no existe en la base de datos",
+          });
         } else {
           // Devolver la cantidad al stock del producto
           const currentStock = selectResult[0].stock_product;
@@ -278,21 +269,17 @@ controller.returnProductQuantity = (req, res) => {
                   "Error al devolver la cantidad de productos:",
                   updateErr
                 );
-                res
-                  .status(500)
-                  .json({
-                    error: "Error al devolver la cantidad de productos",
-                    details: updateErr.message,
-                  });
+                res.status(500).json({
+                  error: "Error al devolver la cantidad de productos",
+                  details: updateErr.message,
+                });
               } else {
                 console.log("Resultado de la devolución:", updateResult);
                 console.log("Cantidad de productos devuelta con éxito");
-                res
-                  .status(200)
-                  .json({
-                    success: true,
-                    message: "Cantidad de productos devuelta con éxito",
-                  });
+                res.status(200).json({
+                  success: true,
+                  message: "Cantidad de productos devuelta con éxito",
+                });
               }
             }
           );
@@ -346,23 +333,19 @@ controller.returnProductsQuantity = async (req, res) => {
           "Error al devolver la cantidad de productos al stock:",
           updateErr
         );
-        res
-          .status(500)
-          .json({
-            error: "Error al devolver la cantidad de productos al stock",
-            details: updateErr.message,
-          });
+        res.status(500).json({
+          error: "Error al devolver la cantidad de productos al stock",
+          details: updateErr.message,
+        });
         return;
       }
     }
 
     console.log("Cantidades devueltas al stock con éxito");
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Cantidades devueltas al stock con éxito",
-      });
+    res.status(200).json({
+      success: true,
+      message: "Cantidades devueltas al stock con éxito",
+    });
   } catch (error) {
     console.error(
       "Error en el controlador de devolución de cantidades al stock:",
@@ -381,21 +364,31 @@ controller.createProduct = (req, res) => {
   const priceProduct = req.body.priceProduct;
   const quantityProduct = req.body.quantityProduct;
   const optionsCategory = req.body.optionsCategory;
-  
 
-  const sql = 'INSERT INTO PRODUCT (img_product, name_product, description_product, price_product, stock_product, fk_category_id) VALUES (?, ?, ?, ?, ?, ?)';
+  const sql =
+    "INSERT INTO PRODUCT (img_product, name_product, description_product, price_product, stock_product, fk_category_id) VALUES (?, ?, ?, ?, ?, ?)";
 
-  db.query(sql, [imgProduct, nameProduct, descriptionProduct, priceProduct, quantityProduct, optionsCategory], (err, result) => {
-    if (err) {
-      console.error('Error al agregar el producto:', err);
-      res.status(500).send('Error interno del servidor');
-    } else {
-      console.log('Producto agregado correctamente');
-      // res.status(200).send('Producto agregado correctamente');
-      res.redirect("/");
-
+  db.query(
+    sql,
+    [
+      imgProduct,
+      nameProduct,
+      descriptionProduct,
+      priceProduct,
+      quantityProduct,
+      optionsCategory,
+    ],
+    (err, result) => {
+      if (err) {
+        console.error("Error al agregar el producto:", err);
+        res.status(500).send("Error interno del servidor");
+      } else {
+        console.log("Producto agregado correctamente");
+        // res.status(200).send('Producto agregado correctamente');
+        res.redirect("/");
+      }
     }
-  });
-}
+  );
+};
 
 module.exports = controller;

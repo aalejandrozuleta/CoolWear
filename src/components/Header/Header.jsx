@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import CarShop from "../layouts/carShop/CarShop";
 import NightModeToggle from "../layouts/nightMode/NightMode";
@@ -15,15 +15,9 @@ export const Header = ({
   setSelectedCategory,
   cartItems,
   setCartItems,
-  isLoggedIn,
+  isAdmin,
 }) => {
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    // Verificar si el usuario es admin y actualizar el estado
-    const storedIsAdmin = localStorage.getItem("isAdmin") === "true";
-    setIsAdmin(storedIsAdmin);
-  }, [isLoggedIn]); // Actualizar el estado cuando cambie el estado de isLoggedIn
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   const linkNav = [
     {
@@ -55,7 +49,7 @@ export const Header = ({
     ...(isLoggedIn && isAdmin
       ? [
           {
-            path: "/productCreate",
+            path: "/product",
             text: "Crea tu producto",
           },
         ]
