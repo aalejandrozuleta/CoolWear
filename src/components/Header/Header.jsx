@@ -15,9 +15,11 @@ export const Header = ({
   setSelectedCategory,
   cartItems,
   setCartItems,
-  isAdmin,
 }) => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+
 
   const linkNav = [
     {
@@ -49,7 +51,7 @@ export const Header = ({
     ...(isLoggedIn && isAdmin
       ? [
           {
-            path: "/product",
+            path: "/productCreate",
             text: "Crea tu producto",
           },
         ]

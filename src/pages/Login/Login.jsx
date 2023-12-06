@@ -21,8 +21,8 @@ export default function Login() {
       .then((response) => {
         if (response.data.success) {
           localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("isAdmin", response.data.isAdmin);
           setIsLoggedIn(true);
-          // Pasa la información del administrador al componente Header
           setAdmin(response.data.isAdmin);
         } else {
           console.error("Login failed.");
@@ -32,6 +32,8 @@ export default function Login() {
         console.error("Request error:", error);
       });
   };
+  
+  
 
   return (
     <div>
