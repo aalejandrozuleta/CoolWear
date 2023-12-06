@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "server/$1" },
+    { "src": "/(.*)", "dest": "dist/$1" }
+  ],
+  "env": {
+    "DB_HOST": "localhost",
+    "DB_USER": "root",
+    "DB_PASSWORD": "Sena1234%",
+    "DB_DATABASE": "CoolWear",
+    "SESSION_SECRET": "aalejandroZuleta%",  
+    "NODE_ENV": "production"
+  }
+}

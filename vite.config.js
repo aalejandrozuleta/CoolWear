@@ -6,7 +6,18 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5174', // Redirige las solicitudes que comienzan con '/api'
+      '/api': 'http://localhost:5174', 
     },
+  },
+  build: {
+    outDir: 'dist',
+    assetsInclude: [
+      'src/server.js',
+      'src/server/Api.jsx',
+      'src/server/controller.js',
+      'src/server/bd.js',
+      'src/server/routes.js',
+      
+    ],
   },
 });
