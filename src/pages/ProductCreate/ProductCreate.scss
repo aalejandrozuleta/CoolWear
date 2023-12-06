@@ -1,0 +1,70 @@
+#blockProductForm {
+  @include gridCenter;
+  height: 100vh;
+  grid-template-rows: 40px auto;
+
+  #formProductCreate {
+    height: 50%;
+    width: 40%;
+    display: grid;
+    grid-template-rows: repeat(7,13%);
+    row-gap: 1%;
+    @include borderRadiusImg;
+    border: 1px solid black;
+    @include boxShadow;
+    
+    
+
+    .inputProductCreate {
+      width: 70%;
+      height: 80%;
+      margin: 0 auto;
+      @include borderRadiusImg;
+      border: none;
+      text-align: center;
+      
+      &:hover {
+        @include boxShadow;
+        border: 1px solid $hoversLinks;
+      }
+    }
+
+    #optionsCategory {
+      width: 40%;
+      margin: 0 auto;
+      text-align: center;
+      @include borderRadiusButtons;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      option {
+        background-color: $backgroundLight;
+        color: $colorLight;
+      }
+
+      &:hover {
+        background-color: $hoversButtons;
+        color: $headersColorsNight;
+        @include boxShadow;
+      }
+    }
+
+    #btnSubmitCreate {
+      width: 30%;
+      height: 70%;
+      margin: auto;
+      @include borderRadiusButtons;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      text-transform: capitalize;
+      &:hover {
+        background-color: $hoversButtons;
+        color: $headersColorsNight;
+        @include boxShadow;
+      }
+
+    }
+  }
+}
