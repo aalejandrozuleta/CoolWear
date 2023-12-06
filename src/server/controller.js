@@ -374,4 +374,28 @@ controller.returnProductsQuantity = async (req, res) => {
   }
 };
 
+controller.createProduct = (req, res) => {
+  const imgProduct = req.body.imgProduct;
+  const nameProduct = req.body.nameProduct;
+  const descriptionProduct = req.body.descriptionProduct;
+  const priceProduct = req.body.priceProduct;
+  const quantityProduct = req.body.quantityProduct;
+  const optionsCategory = req.body.optionsCategory;
+  
+
+  const sql = 'INSERT INTO PRODUCT (img_product, name_product, description_product, price_product, stock_product, fk_category_id) VALUES (?, ?, ?, ?, ?, ?)';
+
+  db.query(sql, [imgProduct, nameProduct, descriptionProduct, priceProduct, quantityProduct, optionsCategory], (err, result) => {
+    if (err) {
+      console.error('Error al agregar el producto:', err);
+      res.status(500).send('Error interno del servidor');
+    } else {
+      console.log('Producto agregado correctamente');
+      // res.status(200).send('Producto agregado correctamente');
+      res.redirect("/");
+
+    }
+  });
+}
+
 module.exports = controller;
