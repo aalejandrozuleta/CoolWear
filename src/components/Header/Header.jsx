@@ -55,7 +55,7 @@ export const Header = ({
     ...(isLoggedIn && isAdmin
       ? [
           {
-            path: "/product",
+            path: "/productCreate",
             text: "Crea tu producto",
           },
         ]
