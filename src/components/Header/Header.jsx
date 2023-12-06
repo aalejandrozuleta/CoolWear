@@ -15,8 +15,10 @@ export const Header = ({
   setSelectedCategory,
   cartItems,
   setCartItems,
+  isAdmin,
 }) => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
   const linkNav = [
     {
       path: "/",
@@ -44,10 +46,14 @@ export const Header = ({
         },
       ],
     },
-    {
-      path: "/about",
-      text: "Nosotros",
-    },
+    ...(isLoggedIn && isAdmin
+      ? [
+          {
+            path: "/product",
+            text: "Crea tu producto",
+          },
+        ]
+      : []),
   ];
 
   const renderSubmenu = (submenu) => (
@@ -92,21 +98,23 @@ export const Header = ({
 
       <nav id="navBarMain">
         <ul id="menuMain">
-          {linkNav.map(({ text, path, submenu }, index) => (
+          {linkNav.map((item, index) => (
             <li key={index}>
-              {submenu ? (
-                <Link
-                  to={submenu[0].path}
-                  onClick={() => handleCategoryClick(submenu[0].text)}
-                >
-                  {text}
-                </Link>
-              ) : (
-                <Link to={path} onClick={() => handleCategoryClick(text)}>
-                  {text}
-                </Link>
-              )}
-              {submenu && renderSubmenu(submenu)}
+              {item ? (
+                item.submenu ? (
+                  <Link
+                    to={item.submenu[0].path}
+                    onClick={() => handleCategoryClick(item.submenu[0].text)}
+                  >
+                    {item.text}
+                  </Link>
+                ) : (
+                  <Link to={item.path} onClick={() => handleCategoryClick(item.text)}>
+                    {item.text}
+                  </Link>
+                )
+              ) : null}
+              {item.submenu && renderSubmenu(item.submenu)}
             </li>
           ))}
         </ul>
@@ -121,7 +129,7 @@ export const Header = ({
         setSearchResults={setSearchResults}
       />
 
-      {/* if isLogged true, change img */}
+
       {isLoggedIn ? (
         <Link to="/userSettings" id="userLogin">
           <img

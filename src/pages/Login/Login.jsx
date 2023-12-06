@@ -13,16 +13,19 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAdmin, setAdmin] = useState(false);
     //
     //function api
     const handleLogin = () => {
         loginUser(email, password)
             .then((response) => {
                 if (response.data.success) {
-                    localStorage.setItem("isLoggedIn", "true"); //login true
+                    localStorage.setItem("isLoggedIn", "true");
                     setIsLoggedIn(true);
+                    // Pasa la información del administrador al componente Header
+                    setAdmin(response.data.isAdmin);
                 } else {
-                    console.error("Login failed."); //login failed
+                    console.error("Login failed.");
                 }
             })
             .catch((error) => {
@@ -32,7 +35,7 @@ export default function Login() {
 
     return (
         <div>
-            <Header isLoggedIn={isLoggedIn} />
+            <Header isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
             <section id="blockForm">
                 <div id="backgroundSignUp">
                     <figure id="imgUserSignUp">
