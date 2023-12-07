@@ -47,6 +47,17 @@ export function useFetchUserData() {
   return user;
 }
 
+export const handleUpdateUser = (user) => {
+  axios
+    .post("/api/updateUser", user)
+    .then((response) => {
+      console.log("Datos del usuario actualizados con éxito.");
+    })
+    .catch((error) => {
+      console.error("Error al actualizar datos del usuario: ", error);
+    });
+};
+
 export const getProducts = async () => {
   try {
     const response = await axios.get("/api/getProducts");
