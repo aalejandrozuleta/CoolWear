@@ -7,10 +7,11 @@ export const loginUser = (email, password) => {
     password_user: password,
   }, {
     headers: {
-      'content-type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json', // Use JSON instead of form data
     },
   });
 };
+
 
 export const handleLogout = () => {
   axios
