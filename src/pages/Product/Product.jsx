@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from "../../components/Header/Header";
 import ProductsCard from "../../components/layouts/ProductsCard/ProductsCard";
-import { getProducts } from "../../server/Api";
+import { getProducts } from "../../../server/Api";
 import Footer from "../../../src/components/Footer/Footer";
 
 export const Product = () => {

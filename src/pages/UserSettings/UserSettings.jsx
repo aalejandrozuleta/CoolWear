@@ -5,7 +5,7 @@ import {
     handleLogout,
     handleUpdateUser,
     useFetchUserData,
-} from "../../server/Api";
+} from "../../../server/Api";
 import { useNavigate } from "react-router-dom";
 
 export default function UserSettings() {
