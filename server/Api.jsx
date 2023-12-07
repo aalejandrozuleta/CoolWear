@@ -7,8 +7,7 @@ export const loginUser = (email, password) => {
     password_user: password,
   }, {
     headers: {
-      'Content-Type': 'text/plain;charset=utf-8',
-      
+      'content-type': 'application/x-www-form-urlencoded',
     },
   });
 };
