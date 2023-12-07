@@ -46,7 +46,7 @@ export default function Login() {
             <p>Tu registro en las mejores manos</p>
           </figure>
         </div>
-        <form action="/api/loginUser" method="post" id="formUser">
+        <form id="formUser">
           <div className="formSet">
             <label htmlFor="email_user" className="labelForm">
               Ingrese su correo
