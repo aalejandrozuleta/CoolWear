@@ -1,6 +1,9 @@
+const cors = require('cors');
 const express = require('express');
 const routes = express.Router();
 const CoolWear = require('./controller');
+
+routes.use(cors);
 
 routes.get('/api/getUserData', CoolWear.getUserData);
 routes.get('/api/logout', CoolWear.logoutUser);
