@@ -1,10 +1,8 @@
-
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/" }],
-  "routes": {
-    "/api/*": {
-      "methods": ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
-      "origin": "*"
+  "headers": [
+    {
+      "source": "/api/*"
     }
-  }
+  ]
 }
