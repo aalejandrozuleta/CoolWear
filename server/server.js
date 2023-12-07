@@ -3,9 +3,8 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
-const port = 5174;
-const routes = require('./server/routes');
-const db = require('./server/bd'); 
+const PORT = process.env.PORT || 3000;
+const routes = require('./routes');
 const crypto = require('crypto');
 
 const secretKey = crypto.randomBytes(32).toString('hex'); //paswords cookies
@@ -24,7 +23,7 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(port, () => {
-  console.log(`Servidor Node.js escuchando en el puerto ${port}`);
+app.listen(PORT, () => {
+  console.log(`Servidor Node.js escuchando en el puerto ${PORT}`);
   console.log('Clave secreta:', secretKey);
 });

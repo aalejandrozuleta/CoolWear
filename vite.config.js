@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5174', // Redirige las solicitudes que comienzan con '/api'
+      '/api': 'https://bd-sql-017887c5bc0a.herokuapp.com/',
     },
   },
 });
