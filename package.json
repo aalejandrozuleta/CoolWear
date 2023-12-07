@@ -2,7 +2,7 @@
   "name": "CoolWear",
   "type": "commonjs",
   "scripts": {
-    "start": "npm start",
+    "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
