@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from "../../components/Header/Header";
 import ProductsCard from "../../components/layouts/ProductsCard/ProductsCard";
-import { getProducts } from "../../server/Api";
+import { getProducts } from "../../../server/Api";
 import Footer from "../../../src/components/Footer/Footer";
 
 export const Product = () => {
@@ -62,10 +62,10 @@ export const Product = () => {
   const addToCart = (product) => {
     //copy products actuality
     const updatedCartItems = [...cartItems, product];
-  
+
     //update state cart
     setCartItems(updatedCartItems);
-  
+
     // save in localStorage
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
@@ -73,12 +73,11 @@ export const Product = () => {
   useEffect(() => {
     // get cart items the localStorage
     const storedCartItems = localStorage.getItem("cartItems");
-  
+
     if (storedCartItems) {
       setCartItems(JSON.parse(storedCartItems));
     }
   }, []);
-  
 
   return (
     <div>
