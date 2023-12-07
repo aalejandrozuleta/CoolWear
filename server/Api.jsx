@@ -5,13 +5,8 @@ export const loginUser = (email, password) => {
   return axios.post("/api/loginUser", {
     email_user: email,
     password_user: password,
-  }, {
-    headers: {
-      'Content-Type': 'application/json', // Use JSON instead of form data
-    },
   });
 };
-
 
 export const handleLogout = () => {
   axios
