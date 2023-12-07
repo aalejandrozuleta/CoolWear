@@ -4,8 +4,8 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = 5174;
-const routes = require('./server/routes');
-const db = require('./server/bd'); 
+const routes = require('./server/routes.js');
+const db = require('./server/bd.js'); 
 const crypto = require('crypto');
 
 const secretKey = crypto.randomBytes(32).toString('hex'); //paswords cookies
