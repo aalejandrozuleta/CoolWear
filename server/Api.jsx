@@ -5,6 +5,11 @@ export const loginUser = (email, password) => {
   return axios.post("/api/loginUser", {
     email_user: email,
     password_user: password,
+  }, {
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8',
+      
+    },
   });
 };
 
@@ -41,17 +46,6 @@ export function useFetchUserData() {
 
   return user;
 }
-
-export const handleUpdateUser = (user) => {
-  axios
-    .post("/api/updateUser", user)
-    .then((response) => {
-      console.log("Datos del usuario actualizados con éxito.");
-    })
-    .catch((error) => {
-      console.error("Error al actualizar datos del usuario: ", error);
-    });
-};
 
 export const getProducts = async () => {
   try {
